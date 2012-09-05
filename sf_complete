@@ -1,0 +1,15 @@
+#! /bin/bash
+
+_console ()
+{
+  local cur keywords
+  
+  COMPREPLY=()
+  cur=${COMP_WORDS[COMP_CWORD]}
+  keywords="$(echo "" | ./console | grep "^  " | cut -d\  -f2,3 | grep -v "\-\-" | grep -v "\[")"
+  COMPREPLY=( $(compgen -W "$keywords" -- $cur ) )
+
+  return 0
+}
+
+complete -F _console console
