@@ -6,5 +6,6 @@ $ cp sf_complete /etc/bash_completion.d/
 ```
 Second one, create a symlink
 ```bash
-$ ln -s sf_complete /etc/bash_completion.d/sf_complete
+$ cd /etc/bash_completion.d/
+$ ln -s /path/to/sf2-console-autocompletion/sf_complete sf_complete
 ```
