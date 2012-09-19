@@ -1,5 +1,4 @@
 #! /bin/bash
-
 _console ()
 {
   local cur keywords
@@ -7,9 +6,13 @@ _console ()
   COMPREPLY=()
   cur=${COMP_WORDS[COMP_CWORD]}
   keywords="$(echo "" | ./console | grep "^  " | cut -d\  -f2,3 | grep -v "\-\-" | grep -v "\[")"
-  COMPREPLY=( $(compgen -W "$keywords" -- $cur ) )
+  if [ $COMP_CWORD -eq 2 ]; then
+		return 0
+  else
+    COMPREPLY=( $(compgen -W "$keywords" -- $cur ) )
+  fi
+
 
   return 0
 }
-
 complete -F _console console
